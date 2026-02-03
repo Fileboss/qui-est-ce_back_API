@@ -1,0 +1,213 @@
+---
+openapi: 3.1.0
+components:
+  schemas:
+    CardDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        imageUrl:
+          type: string
+        packId:
+          type: string
+    CardUploadForm:
+      type: object
+      properties:
+        name:
+          type: string
+        packId:
+          type: string
+        image:
+          type: string
+          format: binary
+    GameStatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        errorMessage:
+          type: string
+        winner:
+          type: boolean
+    PackDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+paths:
+  /card/create:
+    put:
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/CardUploadForm"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CardDto"
+      summary: Create Card
+      tags:
+      - Card Resource
+  /game/create:
+    post:
+      parameters:
+      - name: packId
+        in: query
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GameStatusResponse"
+      summary: Create Game
+      tags:
+      - Game Resource
+  /game/player1/guess:
+    post:
+      parameters:
+      - name: cardId
+        in: query
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GameStatusResponse"
+      summary: Player 1 Guess
+      tags:
+      - Game Resource
+  /game/player1/join:
+    post:
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CardDto"
+      summary: Player 1 Join Game
+      tags:
+      - Game Resource
+  /game/player2/guess:
+    post:
+      parameters:
+      - name: cardId
+        in: query
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GameStatusResponse"
+      summary: Player 2 Guess
+      tags:
+      - Game Resource
+  /game/player2/join:
+    post:
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CardDto"
+      summary: Player 2 Join Game
+      tags:
+      - Game Resource
+  /game/reset:
+    post:
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GameStatusResponse"
+      summary: Reset Game
+      tags:
+      - Game Resource
+  /game/start:
+    post:
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GameStatusResponse"
+      summary: Start Game
+      tags:
+      - Game Resource
+  /pack:
+    get:
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PackDto"
+      summary: Get All
+      tags:
+      - Pack Resource
+  /pack/create:
+    put:
+      parameters:
+      - name: packName
+        in: query
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PackDto"
+      summary: Create Pack
+      tags:
+      - Pack Resource
+  /pack/{id}/cards:
+    get:
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CardDto"
+      summary: Get Cards By Pack
+      tags:
+      - Pack Resource
+info:
+  title: qui-est-ce_back API
+  version: "0.1"
