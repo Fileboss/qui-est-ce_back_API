@@ -211,3 +211,8 @@ paths:
 info:
   title: qui-est-ce_back API
   version: "0.1"
+servers:
+- url: http://localhost:8080
+  description: Auto generated value
+- url: http://0.0.0.0:8080
+  description: Auto generated value
