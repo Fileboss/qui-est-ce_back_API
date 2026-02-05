@@ -2,7 +2,7 @@
   "openapi" : "3.1.0",
   "components" : {
     "schemas" : {
-      "CardDto" : {
+      "CardDTO" : {
         "type" : "object",
         "properties" : {
           "id" : {
@@ -80,7 +80,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/CardDto"
+                  "$ref" : "#/components/schemas/CardDTO"
                 }
               }
             }
@@ -148,7 +148,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/CardDto"
+                  "$ref" : "#/components/schemas/CardDTO"
                 }
               }
             }
@@ -191,7 +191,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/CardDto"
+                  "$ref" : "#/components/schemas/CardDTO"
                 }
               }
             }
@@ -301,7 +301,7 @@
                 "schema" : {
                   "type" : "array",
                   "items" : {
-                    "$ref" : "#/components/schemas/CardDto"
+                    "$ref" : "#/components/schemas/CardDTO"
                   }
                 }
               }

@@ -2,7 +2,7 @@
 openapi: 3.1.0
 components:
   schemas:
-    CardDto:
+    CardDTO:
       type: object
       properties:
         id:
@@ -54,7 +54,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CardDto"
+                $ref: "#/components/schemas/CardDTO"
       summary: Create Card
       tags:
       - Card Resource
@@ -100,7 +100,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CardDto"
+                $ref: "#/components/schemas/CardDTO"
       summary: Player 1 Join Game
       tags:
       - Game Resource
@@ -129,7 +129,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CardDto"
+                $ref: "#/components/schemas/CardDTO"
       summary: Player 2 Join Game
       tags:
       - Game Resource
@@ -204,7 +204,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/CardDto"
+                  $ref: "#/components/schemas/CardDTO"
       summary: Get Cards By Pack
       tags:
       - Pack Resource
