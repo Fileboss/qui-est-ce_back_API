@@ -40,6 +40,9 @@
           "status" : {
             "type" : "string"
           },
+          "gameId" : {
+            "type" : "string"
+          },
           "errorMessage" : {
             "type" : "string"
           },
@@ -115,9 +118,40 @@
         "tags" : [ "Game Resource" ]
       }
     },
-    "/game/player1/guess" : {
+    "/game/{gameId}" : {
+      "delete" : {
+        "parameters" : [ {
+          "name" : "gameId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : { }
+              }
+            }
+          }
+        },
+        "summary" : "Delete Game",
+        "tags" : [ "Game Resource" ]
+      }
+    },
+    "/game/{gameId}/player1/guess" : {
       "post" : {
         "parameters" : [ {
+          "name" : "gameId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
           "name" : "cardId",
           "in" : "query",
           "schema" : {
@@ -140,8 +174,16 @@
         "tags" : [ "Game Resource" ]
       }
     },
-    "/game/player1/join" : {
+    "/game/{gameId}/player1/join" : {
       "post" : {
+        "parameters" : [ {
+          "name" : "gameId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
         "responses" : {
           "200" : {
             "description" : "OK",
@@ -158,9 +200,16 @@
         "tags" : [ "Game Resource" ]
       }
     },
-    "/game/player2/guess" : {
+    "/game/{gameId}/player2/guess" : {
       "post" : {
         "parameters" : [ {
+          "name" : "gameId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
           "name" : "cardId",
           "in" : "query",
           "schema" : {
@@ -183,8 +232,16 @@
         "tags" : [ "Game Resource" ]
       }
     },
-    "/game/player2/join" : {
+    "/game/{gameId}/player2/join" : {
       "post" : {
+        "parameters" : [ {
+          "name" : "gameId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
         "responses" : {
           "200" : {
             "description" : "OK",
@@ -201,8 +258,16 @@
         "tags" : [ "Game Resource" ]
       }
     },
-    "/game/reset" : {
+    "/game/{gameId}/reset" : {
       "post" : {
+        "parameters" : [ {
+          "name" : "gameId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
         "responses" : {
           "200" : {
             "description" : "OK",
@@ -219,8 +284,16 @@
         "tags" : [ "Game Resource" ]
       }
     },
-    "/game/start" : {
+    "/game/{gameId}/start" : {
       "post" : {
+        "parameters" : [ {
+          "name" : "gameId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
         "responses" : {
           "200" : {
             "description" : "OK",
