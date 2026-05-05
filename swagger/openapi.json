@@ -1,80 +1,5 @@
 {
   "openapi" : "3.1.0",
-  "components" : {
-    "schemas" : {
-      "CardDTO" : {
-        "type" : "object",
-        "properties" : {
-          "id" : {
-            "type" : "string"
-          },
-          "name" : {
-            "type" : "string"
-          },
-          "imageUrl" : {
-            "type" : "string"
-          },
-          "packId" : {
-            "type" : "string"
-          }
-        }
-      },
-      "CardUploadForm" : {
-        "type" : "object",
-        "properties" : {
-          "name" : {
-            "type" : "string"
-          },
-          "packId" : {
-            "type" : "string"
-          },
-          "image" : {
-            "type" : "string",
-            "format" : "binary"
-          }
-        }
-      },
-      "GameDTO" : {
-        "type" : "object",
-        "properties" : {
-          "gameId" : {
-            "type" : "string"
-          },
-          "gameState" : {
-            "type" : "string"
-          },
-          "cards" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/CardDTO"
-            }
-          }
-        }
-      },
-      "GameStatusResponse" : {
-        "type" : "object",
-        "properties" : {
-          "status" : {
-            "type" : "string"
-          },
-          "correct" : {
-            "type" : "boolean"
-          }
-        }
-      },
-      "PackDTO" : {
-        "type" : "object",
-        "properties" : {
-          "id" : {
-            "type" : "string"
-          },
-          "name" : {
-            "type" : "string"
-          }
-        }
-      }
-    }
-  },
   "paths" : {
     "/card/create" : {
       "put" : {
@@ -101,6 +26,31 @@
           }
         },
         "summary" : "Create Card",
+        "tags" : [ "Card Resource" ]
+      }
+    },
+    "/card/{id}" : {
+      "delete" : {
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : { }
+              }
+            }
+          }
+        },
+        "summary" : "Delete Card",
         "tags" : [ "Card Resource" ]
       }
     },
@@ -388,6 +338,31 @@
         "tags" : [ "Pack Resource" ]
       }
     },
+    "/pack/{id}" : {
+      "delete" : {
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : { }
+              }
+            }
+          }
+        },
+        "summary" : "Delete Pack",
+        "tags" : [ "Pack Resource" ]
+      }
+    },
     "/pack/{id}/cards" : {
       "get" : {
         "parameters" : [ {
@@ -415,6 +390,81 @@
         },
         "summary" : "Get Cards By Pack",
         "tags" : [ "Pack Resource" ]
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "CardDTO" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "imageUrl" : {
+            "type" : "string"
+          },
+          "packId" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CardUploadForm" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "packId" : {
+            "type" : "string"
+          },
+          "image" : {
+            "type" : "string",
+            "format" : "binary"
+          }
+        }
+      },
+      "GameDTO" : {
+        "type" : "object",
+        "properties" : {
+          "gameId" : {
+            "type" : "string"
+          },
+          "gameState" : {
+            "type" : "string"
+          },
+          "cards" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/CardDTO"
+            }
+          }
+        }
+      },
+      "GameStatusResponse" : {
+        "type" : "object",
+        "properties" : {
+          "status" : {
+            "type" : "string"
+          },
+          "correct" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "PackDTO" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
       }
     }
   },
