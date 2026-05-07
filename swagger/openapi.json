@@ -23,10 +23,19 @@
                 }
               }
             }
+          },
+          "401" : {
+            "description" : "Not Authorized"
+          },
+          "403" : {
+            "description" : "Not Allowed"
           }
         },
         "summary" : "Create Card",
-        "tags" : [ "Card Resource" ]
+        "tags" : [ "Card Resource" ],
+        "security" : [ {
+          "SecurityScheme" : [ "admin" ]
+        } ]
       }
     },
     "/card/{id}" : {
@@ -48,10 +57,19 @@
                 "schema" : { }
               }
             }
+          },
+          "401" : {
+            "description" : "Not Authorized"
+          },
+          "403" : {
+            "description" : "Not Allowed"
           }
         },
         "summary" : "Delete Card",
-        "tags" : [ "Card Resource" ]
+        "tags" : [ "Card Resource" ],
+        "security" : [ {
+          "SecurityScheme" : [ "admin" ]
+        } ]
       }
     },
     "/game" : {
@@ -69,10 +87,19 @@
                 }
               }
             }
+          },
+          "401" : {
+            "description" : "Not Authorized"
+          },
+          "403" : {
+            "description" : "Not Allowed"
           }
         },
         "summary" : "Get All",
-        "tags" : [ "Game Resource" ]
+        "tags" : [ "Game Resource" ],
+        "security" : [ {
+          "SecurityScheme" : [ ]
+        } ]
       }
     },
     "/game/create" : {
@@ -94,10 +121,19 @@
                 }
               }
             }
+          },
+          "401" : {
+            "description" : "Not Authorized"
+          },
+          "403" : {
+            "description" : "Not Allowed"
           }
         },
         "summary" : "Create Game",
-        "tags" : [ "Game Resource" ]
+        "tags" : [ "Game Resource" ],
+        "security" : [ {
+          "SecurityScheme" : [ "player" ]
+        } ]
       }
     },
     "/game/{gameId}" : {
@@ -118,10 +154,19 @@
                 "schema" : { }
               }
             }
+          },
+          "401" : {
+            "description" : "Not Authorized"
+          },
+          "403" : {
+            "description" : "Not Allowed"
           }
         },
         "summary" : "Delete Game",
-        "tags" : [ "Game Resource" ]
+        "tags" : [ "Game Resource" ],
+        "security" : [ {
+          "SecurityScheme" : [ "player" ]
+        } ]
       }
     },
     "/game/{gameId}/player1/guess" : {
@@ -150,10 +195,19 @@
                 }
               }
             }
+          },
+          "401" : {
+            "description" : "Not Authorized"
+          },
+          "403" : {
+            "description" : "Not Allowed"
           }
         },
         "summary" : "Player 1 Guess",
-        "tags" : [ "Game Resource" ]
+        "tags" : [ "Game Resource" ],
+        "security" : [ {
+          "SecurityScheme" : [ "player" ]
+        } ]
       }
     },
     "/game/{gameId}/player1/join" : {
@@ -176,10 +230,19 @@
                 }
               }
             }
+          },
+          "401" : {
+            "description" : "Not Authorized"
+          },
+          "403" : {
+            "description" : "Not Allowed"
           }
         },
         "summary" : "Player 1 Join Game",
-        "tags" : [ "Game Resource" ]
+        "tags" : [ "Game Resource" ],
+        "security" : [ {
+          "SecurityScheme" : [ "player" ]
+        } ]
       }
     },
     "/game/{gameId}/player2/guess" : {
@@ -208,10 +271,19 @@
                 }
               }
             }
+          },
+          "401" : {
+            "description" : "Not Authorized"
+          },
+          "403" : {
+            "description" : "Not Allowed"
           }
         },
         "summary" : "Player 2 Guess",
-        "tags" : [ "Game Resource" ]
+        "tags" : [ "Game Resource" ],
+        "security" : [ {
+          "SecurityScheme" : [ "player" ]
+        } ]
       }
     },
     "/game/{gameId}/player2/join" : {
@@ -234,10 +306,19 @@
                 }
               }
             }
+          },
+          "401" : {
+            "description" : "Not Authorized"
+          },
+          "403" : {
+            "description" : "Not Allowed"
           }
         },
         "summary" : "Player 2 Join Game",
-        "tags" : [ "Game Resource" ]
+        "tags" : [ "Game Resource" ],
+        "security" : [ {
+          "SecurityScheme" : [ "player" ]
+        } ]
       }
     },
     "/game/{gameId}/reset" : {
@@ -260,10 +341,19 @@
                 }
               }
             }
+          },
+          "401" : {
+            "description" : "Not Authorized"
+          },
+          "403" : {
+            "description" : "Not Allowed"
           }
         },
         "summary" : "Reset Game",
-        "tags" : [ "Game Resource" ]
+        "tags" : [ "Game Resource" ],
+        "security" : [ {
+          "SecurityScheme" : [ "player" ]
+        } ]
       }
     },
     "/game/{gameId}/start" : {
@@ -286,10 +376,19 @@
                 }
               }
             }
+          },
+          "401" : {
+            "description" : "Not Authorized"
+          },
+          "403" : {
+            "description" : "Not Allowed"
           }
         },
         "summary" : "Start Game",
-        "tags" : [ "Game Resource" ]
+        "tags" : [ "Game Resource" ],
+        "security" : [ {
+          "SecurityScheme" : [ "player" ]
+        } ]
       }
     },
     "/pack" : {
@@ -307,10 +406,19 @@
                 }
               }
             }
+          },
+          "401" : {
+            "description" : "Not Authorized"
+          },
+          "403" : {
+            "description" : "Not Allowed"
           }
         },
         "summary" : "Get All",
-        "tags" : [ "Pack Resource" ]
+        "tags" : [ "Pack Resource" ],
+        "security" : [ {
+          "SecurityScheme" : [ ]
+        } ]
       }
     },
     "/pack/create" : {
@@ -332,10 +440,19 @@
                 }
               }
             }
+          },
+          "401" : {
+            "description" : "Not Authorized"
+          },
+          "403" : {
+            "description" : "Not Allowed"
           }
         },
         "summary" : "Create Pack",
-        "tags" : [ "Pack Resource" ]
+        "tags" : [ "Pack Resource" ],
+        "security" : [ {
+          "SecurityScheme" : [ "admin" ]
+        } ]
       }
     },
     "/pack/{id}" : {
@@ -357,10 +474,19 @@
                 "schema" : { }
               }
             }
+          },
+          "401" : {
+            "description" : "Not Authorized"
+          },
+          "403" : {
+            "description" : "Not Allowed"
           }
         },
         "summary" : "Delete Pack",
-        "tags" : [ "Pack Resource" ]
+        "tags" : [ "Pack Resource" ],
+        "security" : [ {
+          "SecurityScheme" : [ "admin" ]
+        } ]
       }
     },
     "/pack/{id}/cards" : {
@@ -386,10 +512,19 @@
                 }
               }
             }
+          },
+          "401" : {
+            "description" : "Not Authorized"
+          },
+          "403" : {
+            "description" : "Not Allowed"
           }
         },
         "summary" : "Get Cards By Pack",
-        "tags" : [ "Pack Resource" ]
+        "tags" : [ "Pack Resource" ],
+        "security" : [ {
+          "SecurityScheme" : [ ]
+        } ]
       }
     }
   },
@@ -465,6 +600,12 @@
             "type" : "string"
           }
         }
+      }
+    },
+    "securitySchemes" : {
+      "SecurityScheme" : {
+        "type" : "openIdConnect",
+        "description" : "Authentication"
       }
     }
   },
