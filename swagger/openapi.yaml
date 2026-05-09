@@ -119,7 +119,7 @@ paths:
       security:
       - SecurityScheme:
         - player
-  /game/{gameId}/player1/guess:
+  /game/{gameId}/guess:
     post:
       parameters:
       - name: gameId
@@ -142,13 +142,13 @@ paths:
           description: Not Authorized
         "403":
           description: Not Allowed
-      summary: Player 1 Guess
+      summary: Guess
       tags:
       - Game Resource
       security:
       - SecurityScheme:
         - player
-  /game/{gameId}/player1/join:
+  /game/{gameId}/join:
     post:
       parameters:
       - name: gameId
@@ -167,61 +167,7 @@ paths:
           description: Not Authorized
         "403":
           description: Not Allowed
-      summary: Player 1 Join Game
-      tags:
-      - Game Resource
-      security:
-      - SecurityScheme:
-        - player
-  /game/{gameId}/player2/guess:
-    post:
-      parameters:
-      - name: gameId
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: cardId
-        in: query
-        schema:
-          type: string
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GameStatusResponse"
-        "401":
-          description: Not Authorized
-        "403":
-          description: Not Allowed
-      summary: Player 2 Guess
-      tags:
-      - Game Resource
-      security:
-      - SecurityScheme:
-        - player
-  /game/{gameId}/player2/join:
-    post:
-      parameters:
-      - name: gameId
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CardDTO"
-        "401":
-          description: Not Authorized
-        "403":
-          description: Not Allowed
-      summary: Player 2 Join Game
+      summary: Join Game
       tags:
       - Game Resource
       security:
