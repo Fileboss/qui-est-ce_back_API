@@ -80,7 +80,7 @@ components:
           maxLength: 30
         password:
           type: string
-          pattern: \S
+          pattern: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$"
           minLength: 12
         role:
           type: string
