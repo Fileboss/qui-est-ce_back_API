@@ -62,17 +62,6 @@
           }
         }
       },
-      "PackCreateRequest" : {
-        "type" : "object",
-        "required" : [ "packName" ],
-        "properties" : {
-          "packName" : {
-            "type" : "string",
-            "pattern" : "\\S",
-            "maxLength" : 128
-          }
-        }
-      },
       "PackDTO" : {
         "type" : "object",
         "properties" : {
@@ -84,7 +73,7 @@
           }
         }
       },
-      "PackUpdateRequest" : {
+      "PackRequest" : {
         "type" : "object",
         "required" : [ "packName" ],
         "properties" : {
@@ -513,7 +502,7 @@
           "content" : {
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/PackCreateRequest"
+                "$ref" : "#/components/schemas/PackRequest"
               }
             }
           },
@@ -562,7 +551,7 @@
           "content" : {
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/PackUpdateRequest"
+                "$ref" : "#/components/schemas/PackRequest"
               }
             }
           },
