@@ -84,9 +84,17 @@
           }
         }
       },
+      "PasswordResetResponse" : {
+        "type" : "object",
+        "properties" : {
+          "generatedPassword" : {
+            "type" : "string"
+          }
+        }
+      },
       "UserCreateRequest" : {
         "type" : "object",
-        "required" : [ "username", "password", "role" ],
+        "required" : [ "username", "role" ],
         "properties" : {
           "username" : {
             "type" : "string",
@@ -94,14 +102,47 @@
             "minLength" : 3,
             "maxLength" : 30
           },
-          "password" : {
-            "type" : "string",
-            "pattern" : "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$",
-            "minLength" : 12
-          },
           "role" : {
             "type" : "string",
             "pattern" : "^(player|admin)$"
+          }
+        }
+      },
+      "UserCreateResponse" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "username" : {
+            "type" : "string"
+          },
+          "generatedPassword" : {
+            "type" : "string"
+          }
+        }
+      },
+      "UserSummary" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "username" : {
+            "type" : "string"
+          },
+          "enabled" : {
+            "type" : "boolean"
+          },
+          "createdTimestamp" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "roles" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
           }
         }
       }
@@ -115,6 +156,54 @@
   },
   "paths" : {
     "/admin/users" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "first",
+          "in" : "query",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0,
+            "default" : 0
+          }
+        }, {
+          "name" : "max",
+          "in" : "query",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "maximum" : 100,
+            "minimum" : 0,
+            "default" : 20
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/UserSummary"
+                  }
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Not Authorized"
+          },
+          "403" : {
+            "description" : "Not Allowed"
+          }
+        },
+        "summary" : "List Users",
+        "tags" : [ "Admin Resource" ],
+        "security" : [ {
+          "SecurityScheme" : [ "admin" ]
+        } ]
+      },
       "post" : {
         "requestBody" : {
           "content" : {
@@ -126,6 +215,46 @@
           },
           "required" : true
         },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/UserCreateResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request body"
+          },
+          "409" : {
+            "description" : "Username already exists"
+          },
+          "401" : {
+            "description" : "Not Authorized"
+          },
+          "403" : {
+            "description" : "Not Allowed"
+          }
+        },
+        "summary" : "Create User",
+        "tags" : [ "Admin Resource" ],
+        "security" : [ {
+          "SecurityScheme" : [ "admin" ]
+        } ]
+      }
+    },
+    "/admin/users/{id}" : {
+      "delete" : {
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
         "responses" : {
           "200" : {
             "description" : "OK",
@@ -140,12 +269,44 @@
           },
           "403" : {
             "description" : "Not Allowed"
-          },
-          "400" : {
-            "description" : "Bad Request"
           }
         },
-        "summary" : "Create User",
+        "summary" : "Delete User",
+        "tags" : [ "Admin Resource" ],
+        "security" : [ {
+          "SecurityScheme" : [ "admin" ]
+        } ]
+      }
+    },
+    "/admin/users/{id}/reset-password" : {
+      "post" : {
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PasswordResetResponse"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Not Authorized"
+          },
+          "403" : {
+            "description" : "Not Allowed"
+          }
+        },
+        "summary" : "Reset Password",
         "tags" : [ "Admin Resource" ],
         "security" : [ {
           "SecurityScheme" : [ "admin" ]
