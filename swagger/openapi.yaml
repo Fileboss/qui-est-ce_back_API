@@ -57,6 +57,70 @@ components:
           type: string
           pattern: \S
           maxLength: 128
+    PageResponseCardDTO:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/CardDTO"
+        first:
+          type: integer
+          format: int32
+        max:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int64
+    PageResponseGameDTO:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/GameDTO"
+        first:
+          type: integer
+          format: int32
+        max:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int64
+    PageResponsePackDTO:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/PackDTO"
+        first:
+          type: integer
+          format: int32
+        max:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int64
+    PageResponseUserSummary:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserSummary"
+        first:
+          type: integer
+          format: int32
+        max:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int64
     PasswordResetResponse:
       type: object
       properties:
@@ -130,9 +194,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/UserSummary"
+                $ref: "#/components/schemas/PageResponseUserSummary"
         "401":
           description: Not Authorized
         "403":
@@ -271,15 +333,29 @@ paths:
         - admin
   /game:
     get:
+      parameters:
+      - name: first
+        in: query
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+          default: 0
+      - name: max
+        in: query
+        schema:
+          type: integer
+          format: int32
+          maximum: 100
+          minimum: 0
+          default: 20
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/GameDTO"
+                $ref: "#/components/schemas/PageResponseGameDTO"
         "401":
           description: Not Authorized
         "403":
@@ -443,15 +519,29 @@ paths:
         - player
   /pack:
     get:
+      parameters:
+      - name: first
+        in: query
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+          default: 0
+      - name: max
+        in: query
+        schema:
+          type: integer
+          format: int32
+          maximum: 100
+          minimum: 0
+          default: 20
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/PackDTO"
+                $ref: "#/components/schemas/PageResponsePackDTO"
         "401":
           description: Not Authorized
         "403":
@@ -576,15 +666,28 @@ paths:
         required: true
         schema:
           type: string
+      - name: first
+        in: query
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+          default: 0
+      - name: max
+        in: query
+        schema:
+          type: integer
+          format: int32
+          maximum: 100
+          minimum: 0
+          default: 20
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/CardDTO"
+                $ref: "#/components/schemas/PageResponseCardDTO"
         "401":
           description: Not Authorized
         "403":
